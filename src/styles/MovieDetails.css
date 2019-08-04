@@ -1,0 +1,103 @@
+.movie-details-wrapper {
+    background: black;
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    color: white;
+    animation: open .5s ease forwards;
+    overflow: scroll;
+}
+
+.close-button {
+    color: white;
+    background: transparent;
+    margin: 10px 25px;
+    height: 22px;
+    border: none;
+    font-size: 20px;
+}
+
+.test {
+    display: grid;
+    grid-template-areas:
+            "poster  poster poster poster poster"
+            "  .       .      t      .       .  "
+            "  c       c      c      c       c  ";
+}
+
+.details-title {
+    grid-area: t;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 900;
+}
+
+.poster {
+    grid-area: poster;
+    width: 100%;
+    height: 500px;
+    border-radius: 0 0 12px 12px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.spinner {
+    margin: 0 auto;
+    position: relative;
+    top: 10%;
+}
+
+.characters{
+    grid-area: c;
+    margin: 0 auto;
+}
+
+.names-list {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    grid-gap: 10px;
+}
+
+.names-list > li {
+    justify-self: center;
+    border-radius: 12px;
+
+}
+
+.names-list > li > img {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px 12px 0 0;
+    border-bottom: 5px solid #5e24ce;
+}
+
+.names-list > li > div {
+    border-radius: 0 0 12px 12px;
+    background-color: #3a3a3a;
+    position: relative;
+    top: -8px;
+    padding: 25px;
+}
+
+@keyframes open {
+    from {
+        transform: translateX(2000px);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes close {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-2000px);
+    }
+}

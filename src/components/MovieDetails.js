@@ -10,11 +10,14 @@ class MovieDetails extends Component {
         idList: [],
         imageURL: [],
         characterDetails: [],
-        loading: true
+        loading: true,
+        detailsOpen: false
     };
 
     details;
     url;
+    detailsOpen = false;
+    currentOpenedDetail = "";
 
 
     moviePosters = [
@@ -88,21 +91,41 @@ class MovieDetails extends Component {
         this.props.closeDetails();
     }
 
+    showCharacterDetails(index) {
+        let charDetail = document.getElementById("character-detail-" + index);
+        if (this.currentOpenedDetail === "") {
+            charDetail.style.animation = "charDetailsOpen .5s ease forwards";
+            this.currentOpenedDetail = "character-detail-" + index;
+        } else if (this.currentOpenedDetail === "character-detail-" + index) {
+            charDetail.style.animation = "charDetailsOpen .5s ease forwards" ? "charDetailsClose .5s ease forwards" : "charDetailsOpen .5s ease forwards"
+            console.log("INSIDE THIS B");
+            this.currentOpenedDetail = "";
+        } else {
+            charDetail.style.animation = "charDetailsOpen .5s ease forwards";
+            document.getElementById(this.currentOpenedDetail).style.animation = "charDetailsClose .5s ease forwards";
+            this.currentOpenedDetail = "character-detail-" + index;
+        }
+    }
+
     render() {
         return (
             <div className="movie-details-wrapper" id="movie-details-wrapper">
                 {
                     (this.state.loading ?
                             <div className="spinner">
-                                <Spinner size={220} spinnerColor={"#e9c2e9"} spinnerWidth={4} visible={true}/>
+                                <Spinner size={220}
+                                         spinnerColor={"#e9c2e9"}
+                                         spinnerWidth={4}
+                                         visible={true}/>
                             </div>
                             :
                             <div className="test">
                                 <div className="poster"
                                      style={{backgroundImage: `url(${this.moviePosters[this.props.index]})`}}>
-                                    <button className="close-button" onClick={() => {
-                                        this.closeDetails()
-                                    }}>X
+                                    <button className="close-button"
+                                            onClick={() => {
+                                                this.closeDetails()
+                                            }}>X
                                     </button>
                                 </div>
                                 <div className="details-title">
@@ -113,11 +136,18 @@ class MovieDetails extends Component {
                                     <ul className="names-list">
                                         {this.state.nameList.map((name, index) => {
                                             return (
-                                                <li key={index}>
+                                                <li key={index}
+                                                    onClick={() => {
+                                                        this.showCharacterDetails(index)
+                                                    }}>
                                                     <img
                                                         src={this.state.imageURL[index]}
                                                         alt="profile"/>
                                                     <div>{name}</div>
+                                                    <section className={"character-detail"}
+                                                             id={"character-detail-" + index}
+                                                             style={{visibility: "hidden"}}>CHECK ME OUT
+                                                    </section>
                                                 </li>
                                             )
                                         })}

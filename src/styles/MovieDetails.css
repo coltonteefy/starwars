@@ -63,6 +63,10 @@
     grid-gap: 10px;
 }
 
+.names-list:hover {
+    cursor: pointer;
+}
+
 .names-list > li {
     justify-self: center;
     border-radius: 12px;
@@ -99,5 +103,15 @@
     }
     to {
         transform: translateX(-2000px);
+    }
+}
+
+@media only Screen and (max-width: 900px) {
+    .poster {
+        height: 250px;
+    }
+
+    .names-list {
+        grid-template-columns: repeat(3,1fr);
     }
 }

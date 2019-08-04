@@ -55,8 +55,14 @@
     font-weight: 900;
 }
 
-@media only Screen and (max-width: 1200px) {
+@media only Screen and (max-width: 900px) {
     .bottom > ul {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr;
+        width: 95%;
+    }
+
+    .movie-list {
+        height: 350px;
+        background-size: cover;
     }
 }

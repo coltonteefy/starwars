@@ -6,12 +6,16 @@ class MovieDetails extends Component {
 
     state = {
         title: "",
-        characterNames: [],
+        nameList: [],
+        idList: [],
+        imageURL: [],
+        characterDetails: [],
         loading: true
     };
 
     details;
-    namesList = [];
+    url;
+
 
     moviePosters = [
         "https://i0.wp.com/themediabyte.com/wp-content/uploads/2019/05/vstar-was-a-new-hope-albert-hall-2.jpg?resize=1000%2C500&ssl=1",
@@ -23,17 +27,14 @@ class MovieDetails extends Component {
         "https://image.dynamixse.com/s/crop/1200x500/https://static.whereyat.com/whereyatcom_598173146.jpg"
     ];
 
-    // characterDetails;
-
     componentDidMount() {
-        this.getMovieDetails();
+        this.fetchMovieDetails();
     }
 
-    async getMovieDetails() {
+    async fetchMovieDetails() {
         await fetch(this.props.movieSelected)
             .then(async res => {
                 this.details = await res.json();
-                console.log(this.details)
             });
 
         this.fetAllCharacters();
@@ -41,22 +42,42 @@ class MovieDetails extends Component {
 
     async fetAllCharacters() {
         await Promise.all(
-            this.details.characters.map(async link => {
+            this.details.characters.map(async (link, index) => {
                 await fetch(link)
                     .then(async res => {
                         let characterDetails = await res.json();
-                        this.namesList = [...this.namesList, characterDetails.name]
+
+                        this.url = await this.fetchAllCharactersImages(characterDetails.url.replace(/[^0-9]/g, ''));
+
+                        this.setState({
+                            nameList: [...this.state.nameList, characterDetails.name],
+                            idList: [...this.state.idList, characterDetails.url.replace(/[^0-9]/g, '')]
+                        })
                     });
-                return link
+                return link;
             })
         );
 
         this.setState({
             title: this.details.title,
-            characterNames: this.namesList,
             loading: false
         });
 
+        console.log(this.state);
+    }
+
+    fetchAllCharactersImages(id) {
+        fetch("https://cdn.rawgit.com/akabab/starwars-api/0.2.1/api/id/" + id + ".json")
+            .then(async res => {
+                let response = await res.json();
+                // this.imageURL = [...this.imageURL, response.image];
+                // console.log(response);
+                this.setState({
+                    imageURL: [...this.state.imageURL, response.image],
+                    characterDetails: [...this.state.characterDetails, response]
+                });
+                return response.image
+            })
     }
 
 
@@ -90,11 +111,11 @@ class MovieDetails extends Component {
                                 <div className="characters">
                                     <h1>Characters</h1>
                                     <ul className="names-list">
-                                        {this.state.characterNames.map((name, index) => {
+                                        {this.state.nameList.map((name, index) => {
                                             return (
                                                 <li key={index}>
                                                     <img
-                                                        src="https://screenshotlayer.com/images/assets/placeholder.png"
+                                                        src={this.state.imageURL[index]}
                                                         alt="profile"/>
                                                     <div>{name}</div>
                                                 </li>
@@ -111,7 +132,3 @@ class MovieDetails extends Component {
 }
 
 export default MovieDetails;
-
-/*
-http://www.honcho-sfx.com/blog/wp-content/uploads/2015/11/Luke-Skywalker-300x300.jpg
-* */

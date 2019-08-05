@@ -68,8 +68,6 @@ class Films extends Component {
     }
 
 
-
-
     componentWillMount() {
         this.getFilms();
     }

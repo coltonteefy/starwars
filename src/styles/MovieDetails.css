@@ -6,6 +6,7 @@
     color: white;
     animation: open .5s ease forwards;
     overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 .close-button {

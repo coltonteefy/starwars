@@ -8,6 +8,7 @@ class CharacterDetail extends Component {
     };
 
     currentOpenedDetail = "";
+    currentPanelShifted = "";
 
     componentDidMount() {
         this.fetchCharacterDetails();
@@ -36,16 +37,31 @@ class CharacterDetail extends Component {
 
     showCharacterDetails(index) {
         let charDetail = document.getElementById("character-detail-" + index);
+        let listItem = document.getElementById("list-item" + index);
+
         if (this.currentOpenedDetail === "") {
             charDetail.style.animation = "charDetailsOpen .5s ease forwards";
+            listItem.style.animation = "shiftLowerPanelsDown .5s ease forwards";
+
             this.currentOpenedDetail = "character-detail-" + index;
+            this.currentPanelShifted = "list-item" + index;
         } else if (this.currentOpenedDetail === "character-detail-" + index) {
-            charDetail.style.animation = "charDetailsOpen .5s ease forwards" ? "charDetailsClose .5s ease forwards" : "charDetailsOpen .5s ease forwards"
+            charDetail.style.animation = "charDetailsOpen .5s ease forwards" ?
+                "charDetailsClose .5s ease forwards" : "charDetailsOpen .5s ease forwards";
+            listItem.style.animation = "shiftLowerPanelsDown .5s ease forwards" ?
+                "shiftLowerPanelsUp .5s ease forwards" : "shiftLowerPanelsDown .5s ease forwards";
+
             this.currentOpenedDetail = "";
+            this.currentPanelShifted = "";
         } else {
             charDetail.style.animation = "charDetailsOpen .5s ease forwards";
+            listItem.style.animation = "shiftLowerPanelsDown .5s ease forwards";
+
             document.getElementById(this.currentOpenedDetail).style.animation = "charDetailsClose .5s ease forwards";
+            document.getElementById(this.currentPanelShifted).style.animation = "shiftLowerPanelsUp .5s ease forwards";
+
             this.currentOpenedDetail = "character-detail-" + index;
+            this.currentPanelShifted = "list-item" + index;
         }
     }
 
@@ -57,9 +73,9 @@ class CharacterDetail extends Component {
                     {
                         this.state.charaterDetails.length === this.props.charactersURL.length &&
                         this.props.charactersURL.map((res, index) => {
-                            console.log(this.state.charaterDetails);
                             return (
                                 <li key={index}
+                                    id={"list-item" + index}
                                     onClick={() => {
                                         this.showCharacterDetails(index)
                                     }}>
@@ -70,14 +86,37 @@ class CharacterDetail extends Component {
                                     <section className={"character-detail"}
                                              id={"character-detail-" + index}
                                              style={{visibility: "visible"}}>
-                                        <i className="fas fa-caret-up"/>
-                                        <h5>gender: {this.state.charaterDetails[index].gender}</h5>
-                                        <h5>eye color: {this.state.charaterDetails[index].eyeColor}</h5>
-                                        <h5>home world: {this.state.charaterDetails[index].homeworld}</h5>
+                                        <h1>{this.state.charaterDetails[index].name}</h1>
+                                        <div id="detail-panel">
+                                            <div className="side-border">
+                                                <h3>Affiliations</h3>
+                                                <h4>{this.state.charaterDetails[index].affiliations}</h4>
+                                            </div>
+                                            <div className="side-border">
+                                                <h3>Species</h3>
+                                                <h4>{this.state.charaterDetails[index].species}</h4>
+                                            </div>
+                                            <div className="side-border">
+                                                <h3>Height</h3>
+                                                <h4>{this.state.charaterDetails[index].height}cm</h4>
+                                            </div>
+                                            <div className="side-border">
+                                                <h3>Gender</h3>
+                                                <h4>{this.state.charaterDetails[index].gender}</h4>
+                                            </div>
+
+                                            <div className="side-border">
+                                                <h3>Eye Color</h3>
+                                                <h4>{this.state.charaterDetails[index].eyeColor}</h4>
+                                            </div>
+                                            <div className="side-border">
+                                                <h3>Home World</h3>
+                                                <h4>{this.state.charaterDetails[index].homeworld}</h4>
+                                            </div>
+                                        </div>
                                     </section>
                                 </li>
-                            )
-                                ;
+                            );
                         })
                     }
                 </ul>
@@ -87,26 +126,3 @@ class CharacterDetail extends Component {
 }
 
 export default CharacterDetail
-
-/*
-<div key={index}>{this.state.charaterDetails[index].name}</div>
-
-
-
-affiliations: (3) ["House of Organa", "Alliance to Restore the Republic", "Alliance Military"]
-died: 0
-diedLocation: "tantive iv, tatoo system"
-eyeColor: "brown"
-formerAffiliations: []
-gender: "male"
-hairColor: "brown"
-height: 1.88
-homeworld: "alderaan"
-id: 81
-image: "https://vignette.wikia.nocookie.net/starwars/images/8/80/Raymus_card_trader.png"
-mass: 79
-name: "Raymus Antilles"
-skinColor: "fair"
-species: "human"
-wiki: "http://starwars.wikia.com/wiki/Raymus_Antilles"
-*/

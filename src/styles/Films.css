@@ -4,9 +4,9 @@
 }
 
 .top {
-    height: 345px;
+    height: 400px;
     background-size: contain;
-    background: #000 url("https://i.pinimg.com/originals/e2/8b/d6/e28bd63ebbfba6e4449497e5c23dffc9.jpg") no-repeat center center;
+    background: #000 url("https://i.pinimg.com/originals/e2/8b/d6/e28bd63ebbfba6e4449497e5c23dffc9.jpg") no-repeat top;
 }
 
 .top > img {
@@ -15,8 +15,6 @@
 }
 
 .bottom {
-    /*position: relative;*/
-    /*top: -76px;*/
     background: #fff;
 }
 

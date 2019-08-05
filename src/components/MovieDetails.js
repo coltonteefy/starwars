@@ -85,7 +85,6 @@ class MovieDetails extends Component {
 export default MovieDetails;
 
 
-
 /*
 
 import React, {Component} from 'react';

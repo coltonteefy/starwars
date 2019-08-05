@@ -9,6 +9,7 @@ class CharacterDetail extends Component {
 
     currentOpenedDetail = "";
     currentPanelShifted = "";
+    currentViewDetails = "";
 
     componentDidMount() {
         this.fetchCharacterDetails();
@@ -38,31 +39,44 @@ class CharacterDetail extends Component {
     showCharacterDetails(index) {
         let charDetail = document.getElementById("character-detail-" + index);
         let listItem = document.getElementById("list-item" + index);
+        let viewDetails = document.getElementById("view-details" + index);
 
         if (this.currentOpenedDetail === "") {
             charDetail.style.animation = "charDetailsOpen .5s ease forwards";
             listItem.style.animation = "shiftLowerPanelsDown .5s ease forwards";
+            viewDetails.innerText = "close details";
 
             this.currentOpenedDetail = "character-detail-" + index;
             this.currentPanelShifted = "list-item" + index;
+            this.currentViewDetails = "view-details" + index;
+
         } else if (this.currentOpenedDetail === "character-detail-" + index) {
             charDetail.style.animation = "charDetailsOpen .5s ease forwards" ?
                 "charDetailsClose .5s ease forwards" : "charDetailsOpen .5s ease forwards";
             listItem.style.animation = "shiftLowerPanelsDown .5s ease forwards" ?
                 "shiftLowerPanelsUp .5s ease forwards" : "shiftLowerPanelsDown .5s ease forwards";
+            viewDetails.innerText = "close details" ? "view details" : "close details";
 
             this.currentOpenedDetail = "";
             this.currentPanelShifted = "";
+
         } else {
+            console.log(charDetail.offsetHeight);
             charDetail.style.animation = "charDetailsOpen .5s ease forwards";
             listItem.style.animation = "shiftLowerPanelsDown .5s ease forwards";
+            viewDetails.innerText = "close details";
 
             document.getElementById(this.currentOpenedDetail).style.animation = "charDetailsClose .5s ease forwards";
             document.getElementById(this.currentPanelShifted).style.animation = "shiftLowerPanelsUp .5s ease forwards";
+            document.getElementById(this.currentViewDetails).innerText = "view details";
 
             this.currentOpenedDetail = "character-detail-" + index;
             this.currentPanelShifted = "list-item" + index;
+            this.currentViewDetails = "view-details" + index;
+
         }
+
+        console.log(charDetail.offsetHeight);
     }
 
     render() {
@@ -75,17 +89,19 @@ class CharacterDetail extends Component {
                         this.props.charactersURL.map((res, index) => {
                             return (
                                 <li key={index}
-                                    id={"list-item" + index}
-                                    onClick={() => {
-                                        this.showCharacterDetails(index)
-                                    }}>
-                                    <img
-                                        src={this.state.charaterDetails[index].image}
-                                        alt="profile"/>
-                                    <div>{this.state.charaterDetails[index].name}</div>
+                                    id={"list-item" + index}>
+                                    <img src={this.state.charaterDetails[index].image}
+                                         alt="profile"/>
+                                    <div className="name-section"
+                                         onClick={() => {
+                                             this.showCharacterDetails(index)
+                                         }}>
+                                        <div>{this.state.charaterDetails[index].name}</div>
+                                        <h5 className="view-details"
+                                            id={"view-details" + index}>view detials</h5>
+                                    </div>
                                     <section className={"character-detail"}
-                                             id={"character-detail-" + index}
-                                             style={{visibility: "visible"}}>
+                                             id={"character-detail-" + index}>
                                         <h1>{this.state.charaterDetails[index].name}</h1>
                                         <div id="detail-panel">
                                             <div className="side-border">

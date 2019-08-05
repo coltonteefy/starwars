@@ -8,6 +8,7 @@ class Films extends Component {
         data: [],
         movieDetailsOpen: false,
         movieSelected: "",
+
         index: 0
     };
 
@@ -31,7 +32,6 @@ class Films extends Component {
 
         document.getElementById("bottom").style.animation = "close .5s ease forwards";
         document.getElementById("top").style.animation = "close .5s ease forwards";
-        console.log(this.state);
     }
 
     closeMovieDetails() {
@@ -42,7 +42,6 @@ class Films extends Component {
             });
         }, 500)
     }
-
 
     async getFilms() {
         let data = [];
@@ -67,6 +66,8 @@ class Films extends Component {
             return res;
         });
     }
+
+
 
 
     componentWillMount() {

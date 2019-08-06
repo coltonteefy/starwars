@@ -87,61 +87,63 @@ class CharacterDetail extends Component {
 
     render() {
         return (
-            <div className="characters">
-                <h1>Characters</h1>
-                <ul className="names-list">
-                    {
-                        this.state.charaterDetails.length === this.props.charactersURL.length &&
-                        this.props.charactersURL.map((res, index) => {
-                            return (
-                                <li key={index}
-                                    id={"list-item" + index}>
-                                    <img src={this.state.charaterDetails[index].image}
-                                         alt="profile"/>
-                                    <div className="name-section"
-                                         onClick={() => {
-                                             this.showCharacterDetails(index)
-                                         }}>
-                                        <div>{this.state.charaterDetails[index].name}</div>
-                                        <h5 className="view-details"
-                                            id={"view-details" + index}>view detials</h5>
-                                    </div>
-                                    <section className={"character-detail"}
-                                             id={"character-detail-" + index}>
-                                        <h1>{this.state.charaterDetails[index].name}</h1>
-                                        <div className="detail-panel" id={"detail-panel" + index}>
-                                            <div className="side-border">
-                                                <h3>Affiliations</h3>
-                                                <h4>{this.state.charaterDetails[index].affiliations}</h4>
-                                            </div>
-                                            <div className="side-border">
-                                                <h3>Species</h3>
-                                                <h4>{this.state.charaterDetails[index].species}</h4>
-                                            </div>
-                                            <div className="side-border">
-                                                <h3>Height</h3>
-                                                <h4>{this.state.charaterDetails[index].height}cm</h4>
-                                            </div>
-                                            <div className="side-border">
-                                                <h3>Gender</h3>
-                                                <h4>{this.state.charaterDetails[index].gender}</h4>
-                                            </div>
-
-                                            <div className="side-border">
-                                                <h3>Eye Color</h3>
-                                                <h4>{this.state.charaterDetails[index].eyeColor}</h4>
-                                            </div>
-                                            <div className="side-border">
-                                                <h3>Home World</h3>
-                                                <h4>{this.state.charaterDetails[index].homeworld}</h4>
-                                            </div>
+            <div className="characters-wrapper">
+                <div className="characters">
+                    <h1>Characters</h1>
+                    <ul className="names-list">
+                        {
+                            this.state.charaterDetails.length === this.props.charactersURL.length &&
+                            this.props.charactersURL.map((res, index) => {
+                                return (
+                                    <li key={index}
+                                        id={"list-item" + index}>
+                                        <img src={this.state.charaterDetails[index].image}
+                                             alt="profile"/>
+                                        <div className="name-section"
+                                             onClick={() => {
+                                                 this.showCharacterDetails(index)
+                                             }}>
+                                            <div>{this.state.charaterDetails[index].name}</div>
+                                            <h5 className="view-details"
+                                                id={"view-details" + index}>view detials</h5>
                                         </div>
-                                    </section>
-                                </li>
-                            );
-                        })
-                    }
-                </ul>
+                                        <section className={"character-detail"}
+                                                 id={"character-detail-" + index}>
+                                            <h1>{this.state.charaterDetails[index].name}</h1>
+                                            <div className="detail-panel" id={"detail-panel" + index}>
+                                                <div className="side-border">
+                                                    <h3>Affiliations</h3>
+                                                    <h4>{this.state.charaterDetails[index].affiliations}</h4>
+                                                </div>
+                                                <div className="side-border">
+                                                    <h3>Species</h3>
+                                                    <h4>{this.state.charaterDetails[index].species}</h4>
+                                                </div>
+                                                <div className="side-border">
+                                                    <h3>Height</h3>
+                                                    <h4>{this.state.charaterDetails[index].height}cm</h4>
+                                                </div>
+                                                <div className="side-border">
+                                                    <h3>Gender</h3>
+                                                    <h4>{this.state.charaterDetails[index].gender}</h4>
+                                                </div>
+
+                                                <div className="side-border">
+                                                    <h3>Eye Color</h3>
+                                                    <h4>{this.state.charaterDetails[index].eyeColor}</h4>
+                                                </div>
+                                                <div className="side-border">
+                                                    <h3>Home World</h3>
+                                                    <h4>{this.state.charaterDetails[index].homeworld}</h4>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </li>
+                                );
+                            })
+                        }
+                    </ul>
+                </div>
             </div>
         );
     }

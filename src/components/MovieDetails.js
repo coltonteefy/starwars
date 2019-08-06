@@ -60,7 +60,7 @@ class MovieDetails extends Component {
                                          visible={true}/>
                             </div>
                             :
-                            <div className="test">
+                            <div>
                                 <div className="poster"
                                      style={{backgroundImage: `url(${this.moviePosters[this.props.index]})`}}>
                                     <button className="close-button"

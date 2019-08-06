@@ -1,6 +1,7 @@
 .characters {
     grid-area: c;
     margin: 0 auto;
+    background-color: black;
 }
 
 .names-list {
@@ -59,7 +60,6 @@
 .character-detail {
     position: absolute;
     background-color: #131313;
-    height: 0;
     visibility: hidden;
     opacity: 0;
     left: 0;
@@ -73,17 +73,10 @@
 }
 
 
-#detail-panel {
+.detail-panel {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    /*position: absolute;*/
-    /*width: 100%;*/
-    /*border: 1px solid #525252;*/
-    /*border-top: none;*/
-    /*border-radius: 0 0 5px 5px;*/
-    /*text-align: center;*/
-    /*background-color: #131313;*/
-    /*min-height: 250px;*/
+    height: auto;
 }
 
 .side-border {
@@ -106,49 +99,30 @@
 
 @keyframes charDetailsOpen {
     from {
-        height: 0;
         visibility: hidden;
         opacity: 0;
-        /*transform: scale(0);*/
+        transform: scaleY(0) translateY(-200px);
     }
     to {
-        height: fit-content;
         visibility: visible;
         opacity: 1;
-        /*transform: scaleX(1.5);*/
+        transform: scaleY(1) translateY(0);
     }
 }
 
 @keyframes charDetailsClose {
     from {
-        height: fit-content;
         visibility: visible;
         opacity: 1;
-        /*transform: scaleX(1.5);*/
+        transform: scaleY(1);
+        color: #131313;
     }
     to {
         height: 0;
         visibility: hidden;
         opacity: 0;
-        /*transform: scale(0);*/
-    }
-}
-
-@keyframes shiftLowerPanelsDown {
-    from {
-        margin-bottom: 0;
-    }
-    to {
-        margin-bottom: 400px;
-    }
-}
-
-@keyframes shiftLowerPanelsUp {
-    from {
-        margin-bottom: 400px;
-    }
-    to {
-        margin-bottom: 0;
+        transform: scaleY(0);
+        color: #131313;
     }
 }
 

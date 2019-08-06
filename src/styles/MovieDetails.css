@@ -18,12 +18,42 @@
     font-size: 20px;
 }
 
+.opening-crawl {
+    width: 50%;
+    font-size: 20px;
+    text-align: left;
+    padding: 15px;
+    letter-spacing: 2px;
+    position: relative;
+    top: 99999px;
+    transform-origin: 50% 100%;
+    opacity: 0;
+    animation: crawl 300s linear;
+    animation-delay: 1s;
+}
+
+.star-wars {
+    display: flex;
+    justify-content: center;
+    color: #feda4a;
+    perspective: 400px;
+    text-align: justify;
+}
+
+.fade {
+    position: relative;
+    height: 80px;
+    top: 150px;
+    z-index: -1;
+}
+
 .test {
     display: grid;
     grid-template-areas:
             "poster  poster poster poster poster"
             "  .       .      t      .       .  "
-            "  c       c      c      c       c  ";
+            "  c       c      c      c       c  "
+            "  f       f      f      f       f  ";
 }
 
 .details-title {
@@ -41,12 +71,25 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    z-index: 100;
 }
 
 .spinner {
     margin: 0 auto;
     position: relative;
     top: 10%;
+}
+
+@keyframes crawl {
+    0% {
+        top: -100px;
+        transform: rotateX(20deg)  translateZ(0);
+        opacity: 1;
+    }
+    100% {
+        top: -6000px;
+        transform: rotateX(25deg) translateZ(-2500px);
+    }
 }
 
 @keyframes open {

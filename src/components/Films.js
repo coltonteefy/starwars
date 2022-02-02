@@ -8,7 +8,6 @@ class Films extends Component {
         data: [],
         movieDetailsOpen: false,
         movieSelected: "",
-
         index: 0
     };
 
@@ -23,7 +22,6 @@ class Films extends Component {
     ];
 
     movieClicked(movie, index) {
-
         this.setState({
             movieDetailsOpen: true,
             movieSelected: movie,
@@ -44,20 +42,21 @@ class Films extends Component {
     }
 
     async getFilms() {
+        console.log("HERE");
         let data = [];
         this.setState({
             data: []
         });
 
-        await fetch("https://swapi.co/api/films/")
+        await fetch("https://swapi.dev/api/films/")
             .then(async (res) => {
                 let response = await res.json();
                 data = [...data, response.results];
+                console.log(data);
             })
             .catch(err => {
                 console.log(err);
             });
-
 
         data[0].map((res, index) => {
             this.setState({
@@ -66,7 +65,6 @@ class Films extends Component {
             return res;
         });
     }
-
 
     componentWillMount() {
         this.getFilms();

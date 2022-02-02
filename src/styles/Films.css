@@ -38,7 +38,7 @@
 .movie-list {
     height: 510px;
     width: 400px;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow: 0 10px 15px -9px black;
     background-repeat: no-repeat;
     background-size: contain;
@@ -51,6 +51,7 @@
     width: 100%;
     font-size: 48px;
     font-weight: 900;
+    border-radius: 15px 15px 0 0;
 }
 
 @media only Screen and (max-width: 900px) {

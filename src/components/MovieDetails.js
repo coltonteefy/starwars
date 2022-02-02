@@ -61,14 +61,19 @@ class MovieDetails extends Component {
                             </div>
                             :
                             <div>
-                                <div className="poster"
+                                <button className="close-button"
+                                            onClick={() => {
+                                                this.closeDetails()
+                                            }}>X
+                                    </button>
+                                {/* <div className="poster"
                                      style={{backgroundImage: `url(${this.moviePosters[this.props.index]})`}}>
                                     <button className="close-button"
                                             onClick={() => {
                                                 this.closeDetails()
                                             }}>X
                                     </button>
-                                </div>
+                                </div> */}
                                 <div className="details-title">
                                     {this.state.details[0].title}
 

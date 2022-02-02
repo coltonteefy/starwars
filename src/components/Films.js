@@ -42,7 +42,6 @@ class Films extends Component {
     }
 
     async getFilms() {
-        console.log("HERE");
         let data = [];
         this.setState({
             data: []

@@ -36,8 +36,8 @@
 }
 
 .movie-list {
-    height: 300px;
-    border: 1px solid #8a8a8a82;
+    height: 510px;
+    width: 400px;
     border-radius: 5px;
     box-shadow: 0 10px 15px -9px black;
     background-repeat: no-repeat;
@@ -46,7 +46,7 @@
 }
 
 .title {
-    background-color: black;
+    background-color: #070707;
     color: #ffffff;
     width: 100%;
     font-size: 48px;

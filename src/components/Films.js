@@ -12,13 +12,12 @@ class Films extends Component {
     };
 
     posterImages = [
-        "https://cdn.dribbble.com/users/75868/screenshots/1323753/star_wars_anewhope_ps_fin_s_c_web2.jpg",
-        "https://dvdmedia.ign.com/dvd/image/ep2_wallpaper800.jpg",
-        "https://images.techtimes.com/data/images/full/180695/phantommenacereviewroundupheader.jpg?w=600&h=300",
-        "http://simonz.co.hu/wallp/ep3/800/battleheroes-wallp.jpg",
-        "https://www.starwarsnewsnet.com/wp-content/uploads/2013/10/star-wars-return-of-the-jedi1-300x2251.jpg",
-        "http://filmjunkee.com/wp-content/uploads/2013/10/star-wars-empire-strikes-back.jpg",
-        "https://i.gadgets360cdn.com/large/star-wars-episode-9-poster-crop_1553756556398.jpg"
+        "a-new-hope.jpg",
+        "empire-strikes-back.jpg",
+        "return-jedi.jpg",
+        "phantom-menace.jpg",
+        "attack-of-the-clones.jpg",
+        "revenge-of-sith.jpg"
     ];
 
     movieClicked(movie, index) {
